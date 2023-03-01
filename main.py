@@ -19,12 +19,29 @@
 #         else:
 #             return "InvalidComparison"
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from inspect import getmembers,isfunction
+from pprint import pprint
 
-@dataclass
+@dataclass()
 class Student:
     name: str
     roll_no: str
     major: str
     year: str
     gpa: float
+    classes: list = field(default_factory=list)
+        
+    def some_method(self):
+        return f"I'm an instance method in {self.__class__.__name__} data class; here for some reason. :)"
+
+
+julia = Student('Julia',0.5,'Statistics','sophomore','who cares!',classes=['Statistics 101','Graph theory','Real analysis'])
+print(julia)
+jane = Student('Jane','CS1234','Computer Science','junior',3.98)
+print(jane)
+julia.gpa = 3.33
+print(julia.some_method())
+
+print(getmembers(Student,isfunction))
+pprint(getmembers(Student,isfunction))
