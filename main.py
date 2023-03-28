@@ -23,7 +23,7 @@ from dataclasses import dataclass, field
 from inspect import getmembers,isfunction
 from pprint import pprint
 
-@dataclass()
+@dataclass
 class Student:
     name: str
     roll_no: str
